@@ -37,7 +37,8 @@ str = "bbbqsssst"
 
 # 查询记录
 for row in con.execute("SELECT * FROM voa"):
-    print (row)
+    
+    print (row[1].__str__())
 
 con.commit()
 

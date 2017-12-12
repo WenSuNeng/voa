@@ -1,9 +1,10 @@
 '''
 第一个示例：简单的网页爬虫
 
-爬取豆瓣首页
+爬取voa首页
 '''
 #import db_init.py
+import os,time
 import sqlite3
 import urllib.request
 import re
@@ -12,7 +13,12 @@ con = sqlite3.connect("voa.db")
 #网址
 url = "http://www.51voa.com"
 
+#def 
+
 #请求
+#while True:
+#	time.sleep(1)
+#	if time.ctime()[12:19]=="8:00:00" or time.ctime()[12:19]=="20:03:00" :
 request = urllib.request.Request(url)
 
 #爬取结果
@@ -43,8 +49,10 @@ for item in items:
 	#print('www.51voa.com/' + item)
 	#output.write('\n\nwww.51voa.com/' + item)
 	str = 'www.51voa.com/' + item 
-	
-	con.execute("INSERT INTO voa (id, title) VALUES (NULL,  '"+ str +"');")
+	try:
+		con.execute("INSERT INTO voa (id, title) VALUES (NULL,  '"+ str +"');")
+	except:
+		continue
 
 con.commit()
 

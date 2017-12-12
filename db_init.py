@@ -6,11 +6,12 @@ import sqlite3
 con = sqlite3.connect("voa.db")
 
 # 创建表
+
 con.execute("""
-CREATE TABLE voa
+CREATE TABLE IF NOT EXISTS voa
 (
-    id INTEGER ,
-    title TEXT PRIMARY KEY
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT unique
 );""")
 
 # 创建表：效果相同
@@ -24,14 +25,15 @@ CREATE TABLE todo
 '''
 
 # 插入记录：shopping
-con.execute("INSERT INTO voa (title) VALUES ('shopping');")
+
+#con.execute("INSERT INTO voa (title) VALUES ('shopping');")
 
 # 插入记录：working
-con.execute("INSERT INTO voa (id, title) VALUES (NULL, 'working');")
+#con.execute("INSERT INTO voa (id, title) VALUES (NULL, 'working');")
 
 
-str = "bbbqsssst"
-con.execute("INSERT INTO voa (id, title) VALUES (NULL,  '"+ str +"');")
+#str = "bbbqsssst"
+#con.execute("INSERT INTO voa (id, title) VALUES (NULL,  '"+ str +"');")
 
 # 查询记录
 for row in con.execute("SELECT * FROM voa"):
